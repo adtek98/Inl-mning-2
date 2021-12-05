@@ -1,7 +1,7 @@
 {
   "name": "uppgift-1",
   "version": "1.0.0",
-  "description": "Uppgift-1",
+  "description": "Uppgift 1",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
@@ -10,10 +10,13 @@
     "type": "git",
     "url": "git+https://github.com/adtek98/Inlamning-2.git"
   },
-  "author": "",
+  "author": "Adrian Tekin",
   "license": "ISC",
   "bugs": {
     "url": "https://github.com/adtek98/Inlamning-2/issues"
   },
-  "homepage": "https://github.com/adtek98/Inlamning-2#readme"
+  "homepage": "https://github.com/adtek98/Inlamning-2#readme",
+  "dependencies": {
+    "express": "^4.17.1"
+  }
 }
