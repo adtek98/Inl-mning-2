@@ -1,0 +1,19 @@
+{
+  "name": "uppgift-1",
+  "version": "1.0.0",
+  "description": "Uppgift-1",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/adtek98/Inlamning-2.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/adtek98/Inlamning-2/issues"
+  },
+  "homepage": "https://github.com/adtek98/Inlamning-2#readme"
+}
