@@ -5,19 +5,28 @@ app.use(express.urlencoded({extended: true}));
 
 
 app.get('/', (req, res) => {
-    res.sendFile(__dirname+ '/index.html');
+    fs.open('Guestbook.txt', 'a+', (err) => {  
+        fs.readFile('index.html', (err, Data) => {
+            fs.readFile('Guestbook.txt',  (err, pData) => {
+                let htmlText = Data.toString();
+                let posts = pData.toString();
+                let output = htmlText.replace(/TEXT/, posts);
+                res.send(output);
+            });
+        });
+    });
 })
 
 app.listen(3000);
 console.log('Servern körs på localhost:3000');
 
-app.post("/form", (req, res) => {
+app.post('/', (req, res) => {
     let messageInput = req.body.message;
     let message = messageInput + '<br>' + '\n';
-    fs.appendFile("Guestbook.txt", message, (err) => {
+    fs.appendFile('Guestbook.txt', message, (err) => {
         if (err) throw err;
-        fs.readFile("index.html", (err, Data) => {
-            fs.readFile("Guestbook.txt", function(err, pData) {
+        fs.readFile('index.html', (err, Data) => {
+            fs.readFile('Guestbook.txt', function(err, pData) {
                 let htmlText = Data.toString();
                 let posts = pData.toString();
                 let output = htmlText.replace(/TEXT/, posts);
