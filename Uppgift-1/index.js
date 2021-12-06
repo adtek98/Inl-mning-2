@@ -1,6 +1,8 @@
 const express = require('express');
 const app = express();
 const fs = require('fs');
+app.use(express.urlencoded({extended: true}));
+
 
 app.get('/', (req, res) => {
     res.sendFile(__dirname+ '/index.html');
@@ -9,10 +11,21 @@ app.get('/', (req, res) => {
 app.listen(3000);
 console.log('Servern körs på localhost:3000');
 
-app.post('/form', (req, res) => {
-    let message = req.body.message;
-    fs.appendFile('Guestbook.txt', message);
-    res.send(message);
+app.post("/form", (req, res) => {
+    let messageInput = req.body.message;
+    let message = messageInput + '<br>' + '\n';
+    fs.appendFile("Guestbook.txt", message, (err) => {
+        if (err) throw err;
+        fs.readFile("index.html", (err, Data) => {
+            fs.readFile("Guestbook.txt", function(err, pData) {
+                let htmlText = Data.toString();
+                let posts = pData.toString();
+                let output = htmlText.replace(/TEXT/, posts);
+                res.send(output);
+            });
+        });
+    });
 });
+
 
 
