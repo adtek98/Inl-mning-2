@@ -21,7 +21,7 @@ app.listen(3000);
 console.log('Servern körs på localhost:3000');
 
 app.post('/', (req, res) => {
-    let messageInput = req.body.message;
+    let messageInput = req.body.message.replace(/</g, '&lt;').replace(/>/g, '&gt;');
     let message = messageInput + '<br>' + '\n';
     fs.appendFile('Guestbook.txt', message, (err) => {
         if (err) throw err;
