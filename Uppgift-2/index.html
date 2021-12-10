@@ -24,7 +24,6 @@
 
     <script>
         var socket = io();
-
         var messages = document.getElementById('messages');
         var form = document.getElementById('form');
         var input = document.getElementById('input');
@@ -33,14 +32,13 @@
         while(Continue){
             var nickname = prompt("Choose nickname");
             if (nickname){
+                socket.emit('chat message', `${nickname}, just connected to the server!`);
                 Continue = false;
-            }
+              }
             else if (!nickname) {
                 alert('Nickname is required')
             }
         }
-
-        console.log(`User: ${nickname}, just connected to the server.`)
 
         form.addEventListener('submit', function(e) {
             e.preventDefault();
@@ -49,6 +47,8 @@
             input.value = '';
             }
         });
+
+        
 
         socket.on('chat message', function(msg) {
             var item = document.createElement('li');
